@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/core-coin/tx-signer/cmd"
+	"github.com/core-coin/pigeon/cmd"
 )
 
 func main() {

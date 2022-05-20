@@ -11,11 +11,6 @@ import (
 	"github.com/core-coin/go-core/common/hexutil"
 )
 
-const (
-	checkResultTries = 15
-	blockTime        = time.Second * 7
-)
-
 type RPCClient struct {
 	Url    string
 	client *http.Client
