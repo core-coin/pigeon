@@ -44,7 +44,7 @@ jobs:
         run: |
           go build -o bin/pigeon.exe -buildmode=exe main.go
       - name: Upload
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: pigeon-${{ matrix.platform.path }}
           path: ./bin/pigeon*
