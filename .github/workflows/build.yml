@@ -40,7 +40,7 @@ jobs:
         if: ${{ matrix.platform.path == 'windows-x86_64' }}
         shell: msys2 {0}
         env:
-          TOKEN: ${{ secrets.GH_ACCESS_TOKEN }}
+          TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           go build -o bin/pigeon.exe -buildmode=exe main.go
       - name: Upload
@@ -64,7 +64,7 @@ jobs:
         id: create_release
         uses: actions/create-release@v1
         env:
-          GITHUB_TOKEN: ${{ secrets.GH_ACCESS_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: ${{ steps.version.outputs.tag }}
           release_name: ${{ steps.version.outputs.tag }} pigeon release
