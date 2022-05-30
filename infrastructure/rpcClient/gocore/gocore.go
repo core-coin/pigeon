@@ -45,6 +45,10 @@ func (r *RPCClient) doPost(url string, method string, params interface{}) (*JSON
 		return nil, err
 	}
 	req, err := http.NewRequest("POST", url, bytes.NewBuffer(data))
+	if err != nil {
+		return nil, err
+	}
+
 	req.Header.Set("Content-Type", "application/json")
 	req.Header.Set("Accept", "application/json")
 

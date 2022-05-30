@@ -170,7 +170,7 @@ func getPrivateKeyFromUTC(UTCFileName, UTCPasswordFileName string) (*goldilocks.
 
 	if UTCPasswordFileName == "" {
 		fmt.Print("Enter password for UTC file: ")
-		bytePassword, err := term.ReadPassword(syscall.Stdin)
+		bytePassword, err := term.ReadPassword(int(syscall.Stdin))
 		if err != nil {
 			return nil, err
 		}
