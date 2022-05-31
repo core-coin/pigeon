@@ -70,7 +70,7 @@ func init() {
 const examples = `
 To sign transactions offline: pigeon -f {path to file with transactions} -u {path to UTC file} -o {path to file where to save signed transactions}
 To sign and stream transactions: pigeon -f {path to file with transactions} -u {path to UTC file} -p {path to file with password}
-To sign and stream transactions(+ save streamed transaction IDs to file): pigeon -f {path to file with transactions} -u {path to UTC file}8 -i {path to file where to save transactions hashes}
+To sign and stream transactions(+ save streamed transaction IDs to file): pigeon -f {path to file with transactions} -u {path to UTC file} -i {path to file where to save transactions hashes}
 To stream signed transactions: pigeon -s {path to file with signed transactions}
 To stream signed transactions(+ save streamed transaction IDs to file): pigeon -s {path to file with signed transactions} -i {path to file where to save transactions hashes}
 `

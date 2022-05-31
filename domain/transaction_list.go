@@ -7,12 +7,12 @@ import (
 type TransactionList []*Transaction
 
 type Transaction struct {
-	To          string  `json:"to"`
-	From        string  `json:"from"`
-	Amount      float64 `json:"amount"`
-	EnergyLimit string  `json:"energy_limit"`
-	EnergyPrice string  `json:"energy_price"`
-	Nonce       string  `json:"nonce"`
+	To          string  `json:"to" csv:"to"`
+	From        string  `json:"from" csv:"from"`
+	Amount      float64 `json:"amount" csv:"amount"`
+	EnergyLimit string  `json:"energy_limit" csv:"energy_limit"`
+	EnergyPrice string  `json:"energy_price" csv:"energy_price"`
+	Nonce       string  `json:"nonce" csv:"nonce"`
 }
 
 type TransactionListUseCase interface {
