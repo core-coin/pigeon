@@ -81,15 +81,15 @@ OTHER DEALINGS IN THE SOFTWARE.
   "energy_price": "3000000000"
   }
   ]`
-- CSV: `from,to,amount,energy_limit,energy_price
-  cb...,cb...,1.123,,
-  cb...,cb...,1.123,22000,
-  cb...,cb...,1.123,22000,2000000000
-  ` or w/o titles - `
-  cb...,cb...,1.123,,
-  cb...,cb...,1.123,22000,
-  cb...,cb...,1.123,22000,2000000000
-  `
+- CSV: <br />
+  `from,to,amount,energy_limit,energy_price` <br />
+  `cb...,cb...,1.123,,`<br />
+  `cb...,cb...,1.123,22000,`<br />
+  `cb...,cb...,1.123,22000,2000000000`<br />
+  or w/o titles - <br />
+  `cb...,cb...,1.123,,`<br />
+  `cb...,cb...,1.123,22000,`<br />
+  `cb...,cb...,1.123,22000,2000000000`<br />
 ### License
 
 Released under the [CORE License](LICENSE).
