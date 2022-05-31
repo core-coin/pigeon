@@ -234,7 +234,7 @@ func (t *transactionListUsecase) getTxsFromCSV(fileName string, missTitles bool)
 	txs := []*domain.Transaction{}
 
 	read := gocsv.DefaultCSVReader(in)
-	if missTitles {
+	if !missTitles {
 		if err := gocsv.UnmarshalCSVWithoutHeaders(read, &txs); err != nil {
 			return nil, err
 		}

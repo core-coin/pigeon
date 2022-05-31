@@ -7,8 +7,8 @@ import (
 type TransactionList []*Transaction
 
 type Transaction struct {
-	To          string  `json:"to" csv:"to"`
 	From        string  `json:"from" csv:"from"`
+	To          string  `json:"to" csv:"to"`
 	Amount      float64 `json:"amount" csv:"amount"`
 	EnergyLimit string  `json:"energy_limit" csv:"energy_limit"`
 	EnergyPrice string  `json:"energy_price" csv:"energy_price"`
