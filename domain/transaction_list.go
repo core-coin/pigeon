@@ -1,8 +1,6 @@
 package domain
 
-import (
-	"github.com/core-coin/go-goldilocks"
-)
+import "github.com/core-coin/go-core/v2/crypto"
 
 type TransactionList []*Transaction
 
@@ -28,7 +26,7 @@ type TransactionListUseCase interface {
 	//GetTxsFromFile is reading transaction from a file and skip first row in CSV if missTitles is true
 	GetTxsFromFile(fileName string, missTitles bool) (TransactionList, error)
 	//SignTxs signs transactions with provided private key
-	SignTxs(txs TransactionList, key *goldilocks.PrivateKey) ([]string, error)
+	SignTxs(txs TransactionList, key *crypto.PrivateKey) ([]string, error)
 	//WriteSignedTxsToFile is writing signed transactions into a file in JSON format
 	WriteSignedTxsToFile(signedTxs []string, fileName string) error
 }
