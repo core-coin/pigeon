@@ -2,17 +2,17 @@ package cmd
 
 import (
 	"fmt"
-
-	"golang.org/x/term"
 	"os"
 	"strings"
 	"syscall"
 	"time"
 
-	"github.com/core-coin/go-core/accounts/keystore"
-	"github.com/core-coin/go-core/common"
-	"github.com/core-coin/go-core/common/hexutil"
-	"github.com/core-coin/go-goldilocks"
+	"github.com/core-coin/go-core/v2/crypto"
+	"golang.org/x/term"
+
+	"github.com/core-coin/go-core/v2/accounts/keystore"
+	"github.com/core-coin/go-core/v2/common"
+	"github.com/core-coin/go-core/v2/common/hexutil"
 
 	"github.com/core-coin/pigeon/domain"
 	"github.com/core-coin/pigeon/infrastructure/rpcClient/gocore"
@@ -22,7 +22,7 @@ import (
 
 func execute() {
 	var (
-		privateKey *goldilocks.PrivateKey
+		privateKey *crypto.PrivateKey
 		err        error
 	)
 
@@ -147,7 +147,7 @@ func exportTxIDs(uc domain.TransactionListUseCase, txIDs []string, exportFile st
 	return err
 }
 
-func getPrivateKey(fileName string) (*goldilocks.PrivateKey, error) {
+func getPrivateKey(fileName string) (*crypto.PrivateKey, error) {
 	data, err := os.ReadFile(fileName)
 	if err != nil {
 		return nil, err
@@ -156,11 +156,15 @@ func getPrivateKey(fileName string) (*goldilocks.PrivateKey, error) {
 	if err != nil {
 		return nil, err
 	}
-	prKey := goldilocks.BytesToPrivateKey(hexData)
-	return &prKey, nil
+	prKey, err := crypto.UnmarshalPrivateKey(hexData)
+	if err != nil {
+		return nil, err
+	}
+
+	return prKey, nil
 }
 
-func getPrivateKeyFromUTC(UTCFileName, UTCPasswordFileName string) (*goldilocks.PrivateKey, error) {
+func getPrivateKeyFromUTC(UTCFileName, UTCPasswordFileName string) (*crypto.PrivateKey, error) {
 	var password string
 
 	jsonBlob, err := os.ReadFile(UTCFileName)

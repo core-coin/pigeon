@@ -9,11 +9,11 @@ import (
 	"path/filepath"
 	"strconv"
 
-	"github.com/core-coin/go-core/common"
-	"github.com/core-coin/go-core/common/hexutil"
-	"github.com/core-coin/go-core/core/types"
-	"github.com/core-coin/go-core/rlp"
-	"github.com/core-coin/go-goldilocks"
+	"github.com/core-coin/go-core/v2/common"
+	"github.com/core-coin/go-core/v2/common/hexutil"
+	"github.com/core-coin/go-core/v2/core/types"
+	"github.com/core-coin/go-core/v2/crypto"
+	"github.com/core-coin/go-core/v2/rlp"
 	"github.com/gocarina/gocsv"
 
 	"github.com/core-coin/pigeon/domain"
@@ -27,7 +27,7 @@ type transactionListUsecase struct {
 	rpc    rpcClient.Client
 }
 
-//NewTransactionListUsecase create new transaction list usecase
+// NewTransactionListUsecase create new transaction list usecase
 func NewTransactionListUsecase(rpc rpcClient.Client, log logger.Logger) domain.TransactionListUseCase {
 	return &transactionListUsecase{
 		rpc:    rpc,
@@ -35,7 +35,7 @@ func NewTransactionListUsecase(rpc rpcClient.Client, log logger.Logger) domain.T
 	}
 }
 
-//StreamSignedTxs is sending raw transactions to blockchain
+// StreamSignedTxs is sending raw transactions to blockchain
 func (t *transactionListUsecase) StreamSignedTxs(signedTxs []string) ([]string, error) {
 	var txIDs []string
 	for _, tx := range signedTxs {
@@ -49,7 +49,7 @@ func (t *transactionListUsecase) StreamSignedTxs(signedTxs []string) ([]string, 
 	return txIDs, nil
 }
 
-//WriteTxIDsToFile is writing transaction hashes to file
+// WriteTxIDsToFile is writing transaction hashes to file
 func (t *transactionListUsecase) WriteTxIDsToFile(txIDs []string, fileName string) error {
 	if len(txIDs) == 0 {
 		t.logger.Debug("Trying to write 0 txs IDs to file")
@@ -68,7 +68,7 @@ func (t *transactionListUsecase) WriteTxIDsToFile(txIDs []string, fileName strin
 	return nil
 }
 
-//WriteTxIDsToConsole is writing transaction hashes to console
+// WriteTxIDsToConsole is writing transaction hashes to console
 func (t *transactionListUsecase) WriteTxIDsToConsole(txIDs []string) error {
 	if len(txIDs) == 0 {
 		t.logger.Debug("Trying to write 0 txs IDs to console")
@@ -85,7 +85,7 @@ func (t *transactionListUsecase) WriteTxIDsToConsole(txIDs []string) error {
 	return nil
 }
 
-//GetSignedTxsFromFile is getting raw transaction from file
+// GetSignedTxsFromFile is getting raw transaction from file
 func (t *transactionListUsecase) GetSignedTxsFromFile(fileName string) ([]string, error) {
 	jsonFile, err := os.Open(fileName)
 	if err != nil {
@@ -106,7 +106,7 @@ func (t *transactionListUsecase) GetSignedTxsFromFile(fileName string) ([]string
 	return result, nil
 }
 
-//GetTxsFromFile is getting transactions from file
+// GetTxsFromFile is getting transactions from file
 func (t *transactionListUsecase) GetTxsFromFile(fileName string, missTitles bool) (domain.TransactionList, error) {
 	txsFromFile, err := t.getTxsFromFile(fileName, missTitles)
 	if err != nil {
@@ -153,8 +153,8 @@ func (t *transactionListUsecase) GetTxsFromFile(fileName string, missTitles bool
 	return txsFromFile, nil
 }
 
-//SignTxs signs transactions
-func (t *transactionListUsecase) SignTxs(txs domain.TransactionList, key *goldilocks.PrivateKey) ([]string, error) {
+// SignTxs signs transactions
+func (t *transactionListUsecase) SignTxs(txs domain.TransactionList, key *crypto.PrivateKey) ([]string, error) {
 	var signed []string
 	signer := types.MakeSigner(big.NewInt(int64(common.DefaultNetworkID)))
 	for _, internalTx := range txs {
@@ -177,7 +177,7 @@ func (t *transactionListUsecase) SignTxs(txs domain.TransactionList, key *goldil
 	return signed, nil
 }
 
-//WriteSignedTxsToFile is writing transactions to file
+// WriteSignedTxsToFile is writing transactions to file
 func (t *transactionListUsecase) WriteSignedTxsToFile(signedTxs []string, fileName string) error {
 	if len(signedTxs) == 0 {
 		t.logger.Debug("Trying to write 0 signed txs to file")
@@ -191,7 +191,7 @@ func (t *transactionListUsecase) WriteSignedTxsToFile(signedTxs []string, fileNa
 	return os.WriteFile(fileName, data, 0644)
 }
 
-//getTxsFromFile is loading transactions from file and choose method depending on file extension
+// getTxsFromFile is loading transactions from file and choose method depending on file extension
 func (t *transactionListUsecase) getTxsFromFile(fileName string, missTitles bool) ([]*domain.Transaction, error) {
 	switch filepath.Ext(fileName) {
 	case ".json":
@@ -202,7 +202,7 @@ func (t *transactionListUsecase) getTxsFromFile(fileName string, missTitles bool
 	return nil, errors.New("unsupported file extension")
 }
 
-//getTxsFromJSON is loading transactions from json file
+// getTxsFromJSON is loading transactions from json file
 func (t *transactionListUsecase) getTxsFromJSON(fileName string) ([]*domain.Transaction, error) {
 	jsonFile, err := os.Open(fileName)
 	if err != nil {
@@ -223,7 +223,7 @@ func (t *transactionListUsecase) getTxsFromJSON(fileName string) ([]*domain.Tran
 	return txs, nil
 }
 
-//getTxsFromCSV is loading transaction from csv file
+// getTxsFromCSV is loading transaction from csv file
 func (t *transactionListUsecase) getTxsFromCSV(fileName string, missTitles bool) ([]*domain.Transaction, error) {
 	in, err := os.Open(fileName)
 	if err != nil {
@@ -246,7 +246,7 @@ func (t *transactionListUsecase) getTxsFromCSV(fileName string, missTitles bool)
 	return txs, nil
 }
 
-//TxToGocoreType converts *domain.Transaction type to gocore *types.Transaction type
+// TxToGocoreType converts *domain.Transaction type to gocore *types.Transaction type
 func (t *transactionListUsecase) TxToGocoreType(tx *domain.Transaction) (*types.Transaction, error) {
 	to, err := common.HexToAddress(tx.To)
 	if err != nil {

@@ -8,7 +8,7 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/core-coin/go-core/common/hexutil"
+	"github.com/core-coin/go-core/v2/common/hexutil"
 )
 
 type RPCClient struct {
