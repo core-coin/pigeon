@@ -1,6 +1,6 @@
 module github.com/core-coin/pigeon
 
-go 1.18
+go 1.19
 
 require (
 	github.com/core-coin/go-core/v2 v2.0.0-beta3
