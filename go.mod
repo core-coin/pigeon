@@ -3,7 +3,7 @@ module github.com/core-coin/pigeon
 go 1.19
 
 require (
-	github.com/core-coin/go-core/v2 v2.0.2
+	github.com/core-coin/go-core/v2 v2.1.4
 	github.com/gocarina/gocsv v0.0.0-20220503141554-3986f9cfe36b
 	github.com/spf13/cobra v1.4.0
 	go.uber.org/zap v1.21.0

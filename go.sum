@@ -11,6 +11,8 @@ github.com/core-coin/ed448 v1.0.2 h1:t9fwBGw8i3HN8cISUlt4GA3TpYPNPR6xD09qtCuoyFA
 github.com/core-coin/ed448 v1.0.2/go.mod h1:/S7hge2XKh2GI/dFp551tIsXDGGD6OU/CSRId+/OjII=
 github.com/core-coin/go-core/v2 v2.0.2 h1:Ft+Bzc3OTHFikA7Ke9F18CQRfNEMhh2umyAoP9PqRP4=
 github.com/core-coin/go-core/v2 v2.0.2/go.mod h1:x+MtCFeW4e8SMaP96DgqEjWAHQkeulNPhsQ3iYvlwiY=
+github.com/core-coin/go-core/v2 v2.1.4 h1:4QcJQWuQv9pJ6ksw7MI3rLmC8ZJkovwP+UmS27T3f9k=
+github.com/core-coin/go-core/v2 v2.1.4/go.mod h1:x+MtCFeW4e8SMaP96DgqEjWAHQkeulNPhsQ3iYvlwiY=
 github.com/core-coin/go-goldilocks v1.0.15 h1:3O3xBf/jlenorGY52BlM5RexEtpotsHmFfj3Y6BTaDE=
 github.com/core-coin/go-goldilocks v1.0.15/go.mod h1:NkEKobYkncEzU+X2RQUQQCIRvzfgoFv2EqpoFtCkhV4=
 github.com/cpuguy83/go-md2man/v2 v2.0.1/go.mod h1:tgQtvFlXSQOSOSIRvRPT7W67SCa46tRHOmNcaadrF8o=
